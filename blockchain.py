@@ -859,8 +859,6 @@ def getParams():
     return param
 
 def mine():
-    while True:
-        B = CBlock()
     if len(sys.argv) != 3:
         print("Usage: python blockchain.py <ScriptPubKey> <ECM Level>")
         print("  ScriptPubKey is a hexadecimal string and ECM Level is an integer from 1 to 5.")
@@ -874,7 +872,9 @@ def mine():
         print("  Choose the appropiate one for the computational power in GPU you have." )
         print()
 
-        scriptPubKey = sys.argv[1]
+    scriptPubKey = sys.argv[1]
+    while True:
+        B = CBlock()
         block = B.mine( scriptPubKey, True )
         if block:
             block.rpc_submitblock()
