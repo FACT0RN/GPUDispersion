@@ -2,13 +2,13 @@
 cd cado-nfs
 mkdir build
 cd build
-#cmake ..
-#make
+cmake ..
+make -j 4
 cd ../../
 git clone https://github.com/Chair-for-Security-Engineering/ecmongpu.git
 cd ecmongpu
 mkdir build
 cd build
 cmake ..
-make
+make -j4
 
