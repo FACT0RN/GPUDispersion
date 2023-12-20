@@ -871,6 +871,7 @@ def mine():
         print("         Level 5:    Remove factors with up to 45 decimal digits.")
         print("  Choose the appropiate one for the computational power in GPU you have." )
         print()
+        sys.exit(1)
 
     scriptPubKey = sys.argv[1]
     while True:
