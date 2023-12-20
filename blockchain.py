@@ -762,13 +762,14 @@ class CBlock(ctypes.Structure):
         #Clean input/output files
         subprocess.run( "rm -rf output*.txt" , capture_output=True, shell=True )
         subprocess.run( "rm -rf input*.txt"  , capture_output=True, shell=True )
+        levels = sys.argv[2]
 
-        for level in range(4):
+        for level in range(levels):
             for idx in range( deviceCount ):
                 config_name = "gpu_config_" + str(level) + "_" + str(idx) + ".txt"
                 create_config_file( level, idx, config_name )
  
-        for level in range(4):
+        for level in range(levels):
                 cand_size = len(candidates)//deviceCount
                 gpu_inputs = [ ( level, gpu_idx, config[level], candidates[gpu_idx*cand_size: min( (gpu_idx+1)*cand_size, len(candidates) ) ],  True )   for gpu_idx in range( deviceCount)  ]
     
@@ -795,7 +796,7 @@ class CBlock(ctypes.Structure):
             #By default, cypari2 lists the factors in ascending order so choose the first factor listed. 
             fstart  = time()
             
-	    run_command = "./cado-nfs/build/cado-nfs.py " + str(cand) 
+            run_command = "./cado-nfs/build/cado-nfs.py " + str(cand) 
             print(run_command)
             try:
                 startf = time()
@@ -860,6 +861,19 @@ def getParams():
 def mine():
     while True:
         B = CBlock()
+    if len(sys.argv) != 3:
+        print("Usage: python blockchain.py <ScriptPubKey> <ECM Level>")
+        print("  ScriptPubKey is a hexadecimal string and ECM Level is an integer from 1 to 5.")
+        print("         ECM Levels")
+        print("         Level 1:    Remove factors with up to 20 decimal digits.")
+        print("         Level 2:    Remove factors with up to 25 decimal digits.")
+        print("         Level 3:    Remove factors with up to 30 decimal digits.")
+        print("         Level 4:    Remove factors with up to 35 decimal digits")
+        print("         Level 5:    Remove factors with up to 40 decimal digits.")
+        print("         Level 5:    Remove factors with up to 45 decimal digits.")
+        print("  Choose the appropiate one for the computational power in GPU you have." )
+        print()
+
         scriptPubKey = sys.argv[1]
         block = B.mine( scriptPubKey, True )
         if block:
