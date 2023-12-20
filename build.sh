@@ -1,4 +1,4 @@
-#git clone https://gitlab.inria.fr/cado-nfs/cado-nfs.git
+git clone https://gitlab.inria.fr/cado-nfs/cado-nfs.git
 cd cado-nfs
 mkdir build
 cd build
