@@ -771,7 +771,7 @@ class CBlock(ctypes.Structure):
  
         for level in range(levels):
                 cand_size = len(candidates)//deviceCount
-                gpu_inputs = [ ( level, gpu_idx, config[level], candidates[gpu_idx*cand_size: min( (gpu_idx+1)*cand_size, len(candidates) ) ],  True )   for gpu_idx in range( deviceCount)  ]
+                gpu_inputs = [ ( level, gpu_idx, "gpu_config_" + str(level) + "_" + str(gpu_idx) + ".txt", candidates[gpu_idx*cand_size: min( (gpu_idx+1)*cand_size, len(candidates) ) ],  True )   for gpu_idx in range( deviceCount)  ]
     
                 with concurrent.futures.ThreadPoolExecutor( max_workers = deviceCount ) as executor:
                     future       = [ executor.submit( self.gpu_sieving, *indata ) for indata in gpu_inputs ]
