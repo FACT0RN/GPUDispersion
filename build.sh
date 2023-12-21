@@ -5,7 +5,7 @@ cd build
 cmake ..
 make -j 4
 cd ../../
-git clone https://github.com/Chair-for-Security-Engineering/ecmongpu.git
+git clone https://github.com/FACT0RN/ecmongpu.git 
 cd ecmongpu
 mkdir build
 cd build
