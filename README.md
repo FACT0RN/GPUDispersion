@@ -36,8 +36,15 @@ Once you have CUDA-NFS and ecmongpu ready to go -- run the ``build.sh`` script. 
 export RPC_USER=youruserforfactornd
 export RPC_PASS=yourpasswordforfactornd
 ```
+Exctremely important, run:
 
-Then to run, you will need your ScriptPubKey and the ecm level to run. For example:
+```
+python sitter.py
+```
+
+This script checks for new blocks and tells the miner to start over from the new block.
+
+Then you will need your ScriptPubKey and the ecm level to run the miner. For example:
 
 ```
 python blockchain.py 00scriptpubkeygoeshereff 4
