@@ -762,7 +762,7 @@ class CBlock(ctypes.Structure):
         #Clean input/output files
         subprocess.run( "rm -rf output*.txt" , capture_output=True, shell=True )
         subprocess.run( "rm -rf input*.txt"  , capture_output=True, shell=True )
-        levels = sys.argv[2]
+        levels = int(sys.argv[2])
 
         for level in range(levels):
             for idx in range( deviceCount ):
